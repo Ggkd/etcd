@@ -9,8 +9,8 @@ import (
 
 func main() {
 	client, err := clientv3.New(clientv3.Config{
-		Endpoints:[]string{"127.0.0.1:2379"},
-		DialTimeout:time.Second*3,
+		Endpoints:   []string{"127.0.0.1:2379"},
+		DialTimeout: time.Second * 3,
 	})
 	if err != nil {
 		fmt.Println("new client err :", err)
@@ -24,7 +24,7 @@ func main() {
 		return
 	}
 
-	_, err = client.Put(context.Background(), "/age", "11", clientv3.WithLease(lease.ID))
+	_, err = client.Put(context.Background(), "age", "11", clientv3.WithLease(lease.ID))
 	if err != nil {
 		fmt.Println("put err:", err)
 		return
